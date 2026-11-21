@@ -73,7 +73,6 @@ class EventService {
     const event = await eventRepository.findById(id);
     if (!event) throw new CustomError("Evento no encontrado", 404);
 
-    // Solo dueño o admin
     const isOwner = event.organizer._id.toString() === user.id;
     if (!isOwner && user.role !== "admin") {
       throw new CustomError(
@@ -95,7 +94,6 @@ class EventService {
       throw new CustomError("El precio no puede ser negativo", 400);
     }
 
-    // Evitar reasignar organizer por payload
     delete data.organizer;
 
     const updated = await eventRepository.updateById(id, data);

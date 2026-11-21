@@ -10,7 +10,6 @@ const cookieExtractor = (req) => {
 };
 
 export const initializePassport = () => {
-  // Estrategia Register
   passport.use(
     "register",
     new LocalStrategy(
@@ -33,7 +32,6 @@ export const initializePassport = () => {
             });
           }
 
-          // Registro público fuerza role: 'user' ignorando cualquier role en req.body
           const newUser = await userRepository.create({
             first_name,
             last_name,
@@ -50,7 +48,6 @@ export const initializePassport = () => {
     ),
   );
 
-  // Estrategia Login
   passport.use(
     "login",
     new LocalStrategy(
@@ -72,7 +69,6 @@ export const initializePassport = () => {
     ),
   );
 
-  // Estrategia Current (extrae JWT desde cookie httpOnly)
   passport.use(
     "current",
     new JwtStrategy(

@@ -2,7 +2,6 @@ import jwt from "jsonwebtoken";
 import { envConfig } from "../config/env.config.js";
 
 export const generateToken = (user) => {
-  // Nunca incluir password en el payload del JWT
   const payload = {
     id: user._id.toString(),
     email: user.email,

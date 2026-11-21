@@ -37,7 +37,6 @@ class MailService {
         `,
       });
     } catch (error) {
-      // Log controlado sin interrumpir la creación del ticket si falla el servidor SMTP externo
       console.error("Error enviando correo de confirmación:", error.message);
     }
   }

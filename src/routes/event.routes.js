@@ -6,11 +6,9 @@ import { authorizeRoles } from "../middlewares/role.middleware.js";
 
 const router = Router();
 
-// Públicos
 router.get("/", eventController.getAll);
 router.get("/:id", eventController.getById);
 
-// Protegidos (creación solo organizer o admin; modificación/cancelación validan dueño o admin en service)
 router.post(
   "/",
   requireAuth,
@@ -30,7 +28,6 @@ router.patch(
   eventController.updateStatus,
 );
 
-// Rutas anidadas de tickets por evento
 router.post("/:eid/tickets", requireAuth, ticketController.book);
 router.get(
   "/:eid/tickets",

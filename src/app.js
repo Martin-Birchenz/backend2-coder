@@ -18,12 +18,10 @@ app.use(passport.initialize());
 
 app.use("/api", apiRoutes);
 
-// 404 para rutas inexistentes
 app.use((req, res) => {
   res.status(404).json({ status: "error", message: "Ruta no encontrada" });
 });
 
-// Middleware centralizado de errores
 app.use(errorHandler);
 
 export default app;

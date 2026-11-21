@@ -28,7 +28,6 @@ class TicketService {
       );
     }
 
-    // Validar cupo suficiente (tickets cancelled no cuentan)
     const occupiedSeats = await ticketRepository.countOccupiedSeats(eventId);
     if (occupiedSeats + Number(quantity) > event.capacity) {
       throw new CustomError(
@@ -46,7 +45,6 @@ class TicketService {
       reservationCode,
     });
 
-    // Envío de notificación por email
     await mailService.sendTicketConfirmation({
       to: user.email,
       userName: user.first_name,
